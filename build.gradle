@@ -1,0 +1,16 @@
+apply plugin: 'base' // To add "clean" task to the root project.
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+

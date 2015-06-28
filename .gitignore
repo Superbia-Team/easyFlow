@@ -1,10 +1,11 @@
+build
 target
 bin
-var
 .classpath
 .project
 .settings
-test-output
 .gradle
 .idea
 *.iml
+*.ipr
+*.iws

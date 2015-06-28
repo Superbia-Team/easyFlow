@@ -1,0 +1,73 @@
+group 'com.superbia'
+version '0.1.0'
+
+buildscript {
+	ext {
+		springBootVersion = '1.2.4.RELEASE'
+  }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'org.springframework:springloaded:1.2.0.RELEASE'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'document-flow-core'
+    version =  '0.1.0'
+}
+
+ext {
+    activitiVersion = '5.17.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile project(":document-flow-domain")
+  
+    // TODO: replace with production DB
+    compile("com.h2database:h2:1.4.185")
+
+    compile("org.springframework.boot:spring-boot-starter-security")
+
+    // Include Activiti BPMN engine
+    //compile("org.activiti:spring-boot-starter-basic:${activitiVersion}")
+    //compile("org.activiti:spring-boot-starter-rest-api:${activitiVersion}")
+    //compile("org.activiti:spring-boot-starter-actuator:${activitiVersion}")
+    //compile("org.activiti:spring-boot-starter-jpa:${activitiVersion}")
+
+    testCompile("junit:junit")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+sourceSets {
+  generated {
+    java {
+      srcDirs = ['src/main/generated-sources']
+    }
+  }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
+}

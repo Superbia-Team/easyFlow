@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Name: Document Flow Web module
+Version: 0.1.0
+Vendor: Superbia Team

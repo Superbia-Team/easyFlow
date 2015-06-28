@@ -1,0 +1,91 @@
+group 'com.superbia'
+version '0.1.0'
+
+buildscript {
+	ext {
+		springBootVersion = '1.2.4.RELEASE'
+  }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'org.springframework:springloaded:1.2.0.RELEASE'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'document-flow-web'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile project(":document-flow-core")
+
+    // The core Spring Boot starter, including auto-configuration support, logging and YAML
+    compile("org.springframework.boot:spring-boot-starter")
+
+    // Use Jetty as embedded HTTP server
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    // Enable GzipFilter
+    compile("org.eclipse.jetty:jetty-servlets")
+
+    // Production ready features to help you monitor and manage your application.
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+
+    // Import Spring Boot’s default logging framework (Logback).
+    compile("org.springframework.boot:spring-boot-starter-logging")
+
+    // Support for exposing Spring Data repositories over REST via spring-data-rest-webmvc
+    //compile("org.springframework.boot:spring-boot-starter-data-rest")
+
+    // Support for “Spring Batch” including HSQLDB database.
+    //compile("org.springframework.boot:spring-boot-starter-batch")
+
+    // Support for the Apache Solr search platform, including spring-data-solr.
+    //compile("org.springframework.boot:spring-boot-starter-data-solr")
+
+    // Support for the FreeMarker templating engine.
+    //compile("org.springframework.boot:spring-boot-starter-freemarker")
+
+    // Support for javax.mail
+    //compile("org.springframework.boot:spring-boot-starter-mail")
+
+    // Support for spring-security.
+    //compile("org.springframework.boot:spring-boot-starter-security")
+
+    // Support for WebSocket development.
+    //compile("org.springframework.boot:spring-boot-starter-websocket")
+
+    // check http://www.webjars.org/
+    compile("org.webjars:bootstrap:3.3.5")
+
+    testCompile("junit:junit")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+    }
+}

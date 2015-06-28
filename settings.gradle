@@ -1,0 +1,5 @@
+rootProject.name = 'superbia-document-flow'
+
+include ':document-flow-domain'
+include ':document-flow-core'
+include ':document-flow-web'

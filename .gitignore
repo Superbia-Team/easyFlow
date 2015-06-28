@@ -1,6 +1,7 @@
 build
 target
 bin
+.idea
 .classpath
 .project
 .settings
